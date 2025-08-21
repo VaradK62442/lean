@@ -1,6 +1,7 @@
 /- Dependent Type Theory -/
 
-/- Simple Type Theorey -/
+/- Simple Type Theory -/
+section
 -- define a variable
 def m : Nat := 1 -- m is natural number
 def n : Nat := 0
@@ -45,8 +46,10 @@ def b2 : Bool := false
 #check Nat → Nat → Nat
 #check Nat → (Nat → Nat) -- equiv
 #check (Nat → Nat) → Nat -- not equiv
+end
 
 /- Types as objects -/
+section
 def α : Type := Nat
 def β : Type := Bool
 def F : Type → Type := List
@@ -80,8 +83,10 @@ def F' (α : Type y) : Type y := Prod α α
 -- alternatively,
 def F''.{z} (α : Type z) : Type z := Prod α α
 #check F''
+end
 
 /- Function abstraction and evaluation -/
+section
 -- fun or λ are equivalent
 #check fun x : Nat => x + 5
 #check fun (x : Nat) => x + 5
@@ -101,8 +106,10 @@ def g (s : String) : Bool := s.length > 0
 #check λ x => g (f x)
 
 #check fun (α β γ : Type) (g : β → γ) (f : α → β) (x : α) => g (f x)
+end
 
 /- Definitions -/
+section
 def double (x : Nat) : Nat := x + x
 def double' : Nat → Nat := λ x => x + x -- equivalent
 def double'' := λ (x : Nat) => x + x -- equivalent (inferred type)
@@ -119,8 +126,10 @@ def add (x y : Nat) := x + y
 
 def greater (x y : Nat) := if x > y then x else y
 def doTwice (f : Nat → Nat) (x : Nat) := f (f x)
+end
 
 /- Local Definitions -/
+section
 #check let y := 2 + 2; y * y
 #eval let y := 2 + 2; y * y
 
@@ -135,8 +144,10 @@ def t (x : Nat) :=
   let y := x + x
   y * y
 #eval t 2
+end
 
 /- Variables and Sections -/
+section
 variable (α β γ : Type)
 def compose (g : β → γ) (f : α → β) (x : α) : γ :=
   g (f x)
@@ -157,8 +168,10 @@ end useful
 
 #check compose'
 -- #check h -- error
+end
 
 /- Namespaces -/
+section
 -- can group dfns into nested, hierarchical namespaces
 namespace Foo
   def a : Nat := 5
@@ -174,8 +187,10 @@ end Foo
 open Foo -- like importing
 
 #check a
+end
 
 /- Implicit Arguments -/
+section
 #check List
 #check List.cons
 #check List.nil
@@ -191,3 +206,4 @@ open Foo -- like importing
 -- use @ to specify implicit arguments
 #check @List.cons
 #check @List.cons Nat 0 List.nil
+end
