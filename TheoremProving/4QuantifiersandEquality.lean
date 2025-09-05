@@ -297,6 +297,7 @@ example : (∀ x, r → p x) ↔ (r → ∀ x, p x) := Iff.intro
     fun hr : r => h hr y
   )
 
+-- in a town, (assuming the barber is a man), every man who gets shaved by the barber does not shave themselves
 variable (men : Type) (barber : men)
 variable (shaves : men → men → Prop)
 
